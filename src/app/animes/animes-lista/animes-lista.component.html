@@ -1,1 +1,38 @@
-<p>animes-lista works!</p>
+<h1 class="mt-4">Animes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-warning" routerLink="/animes-form">
+        <i class="fa fa-plus"></i> Novo
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Episódio</th>
+            <th>Temporada</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let anime of animes">
+            <td>{{ anime.id }}</td>
+            <td>{{ anime.title }}</td>
+            <td>{{ anime.episode }}</td>
+            <td>{{ anime.season }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

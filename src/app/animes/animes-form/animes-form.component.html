@@ -1,1 +1,57 @@
-<p>animes-form works!</p>
+<h1 class="mt-4">Animes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+  <form #animeForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" class="form-control" name="id"
+            [ngModel]="anime.id" disabled="true" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Título: *</label>
+          <input type="text" class="form-control" name="title"
+            [(ngModel)]="anime.title"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Episódio: *</label>
+          <input type="number" class="form-control" [(ngModel)]="anime.episode" name="episode" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Temporada:</label>
+          <input type="number" class="form-control"
+            [(ngModel)]="anime.season" name="season" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
