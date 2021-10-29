@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './token.interceptor';
 import { AnimesService } from './animes.service';
 import { AuthService } from './auth.service';
 import { FormsModule } from '@angular/forms';
@@ -6,7 +7,7 @@ import { ClientesService } from './clientes.service';
 import { ClientesModule } from './clientes/clientes.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +36,12 @@ import { LayoutComponent } from './layout/layout.component';
   providers: [
     ClientesService,
     AnimesService,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
