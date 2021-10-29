@@ -1,13 +1,18 @@
 <h1 class="mt-4">Animes</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Cadastro</li>
+  <li class="breadcrumb-item active">{{ anime.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
 <div class="container">
   <form #animeForm="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-12">
-
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Anime salvo/atualizado com sucesso.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errors !== ''">
+          {{ errors }}
+        </div>
       </div>
 
     </div>
@@ -48,8 +53,12 @@
 
     <div class="row">
       <div class="col-md-2">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" *ngIf="!anime.id">
           <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary" *ngIf="anime.id">
+          <i class="fa fa-sync-alt"></i> Atualizar
         </button>
       </div>
     </div>

@@ -1,3 +1,6 @@
+import { AnimesService } from './animes.service';
+import { AuthService } from './auth.service';
+import { FormsModule } from '@angular/forms';
 import { AnimesModule } from './animes/animes.module';
 import { ClientesService } from './clientes.service';
 import { ClientesModule } from './clientes/clientes.module';
@@ -10,14 +13,19 @@ import { AppComponent } from './app.component';
 
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    LoginComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
@@ -25,7 +33,9 @@ import { HomeComponent } from './home/home.component';
     AnimesModule
   ],
   providers: [
-    ClientesService
+    ClientesService,
+    AnimesService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

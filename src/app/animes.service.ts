@@ -13,11 +13,40 @@ export class AnimesService {
   constructor( private http: HttpClient) {}
 
   salvar( anime: Anime ) : Observable<Anime> {
-    return this.http.post<Anime>('http://localhost:8080/api/animes', anime);
+    const tokenString = localStorage.getItem('access_token')
+    const token = JSON.parse(tokenString || '')
+    const headers = {
+      'Authorization' : 'Bearer' + token.access_token
+    }
+    return this.http.post<Anime>(
+      'http://localhost:8080/api/animes', anime, {headers});
+  }
+
+  atualizar( anime: Anime ) : Observable<any> {
+    return this.http.put<Anime>(`http://localhost:8080/api/animes/${anime.id}`, anime);
   }
 
   getAnimes() : Observable<Anime[]> {
-    return this.http.get<Anime[]>(this.baseUrl);
+    const tokenString = localStorage.getItem('access_token')
+    const token = JSON.parse(tokenString || '')
+    const headers = {
+      'Authorization' : 'Bearer' + token.access_token
+    }
+    return this.http.get<Anime[]>(this.baseUrl, {headers});
+  }
+
+  getAnimeById(id: number) : Observable<Anime> {
+    return this.http.get<any>(`http://localhost:8080/api/animes/${id}`);
+  }
+
+  deletar(anime: Anime) : Observable<any> {
+    const tokenString = localStorage.getItem('access_token')
+    const token = JSON.parse(tokenString || '')
+    const headers = {
+      'Authorization' : 'Bearer' + token.access_token
+    }
+    return this.http.delete<any>(
+      `${this.baseUrl}/${anime.id}`, {headers});
   }
 
   // getAnimes() : Anime[] {
