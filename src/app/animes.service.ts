@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class AnimesService {
 
   baseUrl : string = 'http://localhost:8080/api/animes';
+  newsUrl: string = "https://newsapi.org/v2/everything?q=anime brasil&from=2021-10-07&sortBy=publishedAt&apiKey=";
+  apiKey: string = "248a1735910941e9af95afff145dc0de";
 
   constructor( private http: HttpClient) {}
 
@@ -30,6 +32,14 @@ export class AnimesService {
 
   deletar(anime: Anime) : Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${anime.id}`);
+  }
+
+  showLast2Animes(): Observable<Anime[]> {
+    return this.http.get<Anime[]>(this.baseUrl + "/last");
+  }
+
+  showNews(): Observable<any> {
+    return this.http.get<any>(this.newsUrl+this.apiKey);
   }
 
   // getAnimes() : Anime[] {

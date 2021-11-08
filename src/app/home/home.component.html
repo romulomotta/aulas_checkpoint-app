@@ -2,3 +2,40 @@
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item active">Bem vindo, {{ usuarioLogado }}</li>
 </ol>
+
+<br />
+
+<div class="row">
+  <div class="col-md-4">
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th>Últimos animes adicionados:</th>
+        </tr>
+      </thead>
+        <tr *ngFor="let anime of animes">
+          <ul>{{ anime.title }}</ul>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th>Notícias recentes sobre animes:</th>
+        </tr>
+      </thead>
+        <tr *ngFor="let homeNew of homeNews">
+          <ul>
+            <a href="{{ homeNew.url }}" target="_blank">
+              <i class="fas fa-link"></i></a>  {{ homeNew.title }}
+          </ul>
+        </tr>
+    </table>
+  </div>
+</div>
