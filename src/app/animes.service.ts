@@ -9,8 +9,14 @@ import { Observable } from 'rxjs';
 export class AnimesService {
 
   baseUrl : string = 'http://localhost:8080/api/animes';
-  newsUrl: string = "https://newsapi.org/v2/everything?q=anime brasil&from=2021-10-07&sortBy=publishedAt&apiKey=";
+
   apiKey: string = "248a1735910941e9af95afff145dc0de";
+  newsUrl: string = `https://newsapi.org/v2/everything?q=anime brasil&from=2021-10-07&sortBy=publishedAt&apiKey=${this.apiKey}`;
+
+  msApiKey: string = "82010f78d80f6678b5d63465f5b94d2d";
+  mSUrl: string = `http://localhost:4200/news`;
+
+  jikanUrl: string = "http://localhost:4200/top10";
 
   constructor( private http: HttpClient) {}
 
@@ -34,20 +40,20 @@ export class AnimesService {
     return this.http.delete<any>(`${this.baseUrl}/${anime.id}`);
   }
 
-  showLast2Animes(): Observable<Anime[]> {
+  getLast2Animes(): Observable<Anime[]> {
     return this.http.get<Anime[]>(this.baseUrl + "/last");
   }
 
-  showNews(): Observable<any> {
-    return this.http.get<any>(this.newsUrl+this.apiKey);
+  getNews(): Observable<any> {
+    return this.http.get<any>(this.newsUrl);
   }
 
-  // getAnimes() : Anime[] {
-  //   let anime = new Anime();
-  //   anime.id = 1;
-  //   anime.nome = "Fulano";
-  //   anime.dataCadastro = '18/04/2020';
-  //   anime.cpf = '12345678910';
-  //   return [anime];
-  // }
+  getMSNews(): Observable<any> {
+    return this.http.get<any>(this.mSUrl);
+  }
+
+  getTop10(): Observable<any> {
+    return this.http.get<any>(this.jikanUrl);
+  }
+
 }

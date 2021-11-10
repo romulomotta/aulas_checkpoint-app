@@ -37,6 +37,7 @@ import { LayoutComponent } from './layout/layout.component';
     ClientesService,
     AnimesService,
     AuthService,
+    LoginComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -1,0 +1,19 @@
+{
+  "/news": {
+    "target": "http://api.mediastack.com/v1/news?access_key=82010f78d80f6678b5d63465f5b94d2d&categories=entertainment&limit=10&languages=pt&keywords=anime",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/news": ""
+    }
+  },
+  "/top10": {
+    "target": "https://api.jikan.moe/v3/top/anime",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/top10": ""
+    }
+  }
+}
+

@@ -1,8 +1,11 @@
+import { AnimeInformation } from './animeinformation';
 import { AnimeNews } from './animenews';
-import { AuthService } from './../auth.service';
-import { Component, OnInit } from '@angular/core';
 import { Anime } from '../animes/anime';
+
+import { AuthService } from './../auth.service';
 import { AnimesService } from '../animes.service';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -13,38 +16,57 @@ export class HomeComponent implements OnInit {
 
   usuarioLogado: string = '';
   baseUrl: string = "http://localhost:8080/api/animes/last";
+
   animes: Anime[] = [];
-
-
-  nameNews: string = "";
-  linkNews: string = "";
-  homeNews: AnimeNews[] = [];
+  animesInfo: AnimeInformation[] = [];
+  // homeNews: AnimeNews[] = [];
+  homeMSNews: AnimeNews[] = [];
 
 
   constructor(
     private authService: AuthService,
-    private service: AnimesService
+    private service: AnimesService,
   ) { }
 
   ngOnInit(): void {
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
-    this.showNews();
+
     this.showLast2();
+    this.showMSNews();
+    this.showTop10();
   }
 
-  showNews(): void {
+  // showNews(): void {
+  //   this.service
+  //     .getNews()
+  //     .subscribe( response => {
+  //       this.homeNews = response.articles;
+  //     })
+  // }
+
+  showLast2(): void {
+    this.service.getLast2Animes().subscribe( response => {
+      this.animes = response;
+    })
+  }
+
+  showMSNews(): void {
     this.service
-      .showNews()
+      .getMSNews()
       .subscribe( response => {
-        this.homeNews = response.articles;
-        console.log(this.homeNews)
+        this.homeMSNews = response.data;
+        console.log(this.homeMSNews);
       })
   }
 
-  showLast2(): void {
-    this.service.showLast2Animes().subscribe( response => {
-      this.animes = response;
-    })
+  showTop10() {
+    this.service.getTop10()
+      .subscribe( response => {
+        for (let i = 0; i < 10; i++) {
+          this.animesInfo[i] = response.top[i];
+          console.log(this.animesInfo);
+        }
+      })
   }
 
 }

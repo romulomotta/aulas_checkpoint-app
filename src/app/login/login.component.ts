@@ -1,3 +1,5 @@
+import { AnimeInformation } from './../home/animeinformation';
+import { AnimeNews } from './../home/animenews';
 import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -25,6 +27,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.cadastrando == false) {
+
       this.authService
       .tentarLogar(this.username, this.password)
       .subscribe(response => {

@@ -27,13 +27,32 @@
     <table class="table-condensed">
       <thead>
         <tr>
-          <th>Notícias recentes sobre animes:</th>
+          <th>Notícias recentes:</th>
         </tr>
       </thead>
-        <tr *ngFor="let homeNew of homeNews">
+        <tr *ngFor="let homeMSNew of homeMSNews">
           <ul>
-            <a href="{{ homeNew.url }}" target="_blank">
-              <i class="fas fa-link"></i></a>  {{ homeNew.title }}
+            <a href="{{ homeMSNew.url }}" target="_blank">
+              <i class="fas fa-link"></i></a>  {{ homeMSNew.title }}
+          </ul>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table-condensed">
+      <thead>
+        <tr>
+          <th>Animes Recomendados:</th>
+        </tr>
+      </thead>
+        <tr *ngFor="let info of animesInfo">
+          <ul>
+            {{ info.title }} || Lançamento: {{ info.start_date }}
           </ul>
         </tr>
     </table>
