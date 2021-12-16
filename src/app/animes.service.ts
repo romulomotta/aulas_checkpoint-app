@@ -14,9 +14,9 @@ export class AnimesService {
   newsUrl: string = `https://newsapi.org/v2/everything?q=anime brasil&from=2021-10-07&sortBy=publishedAt&apiKey=${this.apiKey}`;
 
   msApiKey: string = "82010f78d80f6678b5d63465f5b94d2d";
-  mSUrl: string = `http://localhost:4200/news`;
+  mSUrl: string = `http://localhost:8080/api/media`;
 
-  jikanUrl: string = "http://localhost:4200/top10";
+  jikanUrl: string = "http://localhost:8080/api/jikan";
 
   constructor( private http: HttpClient) {}
 

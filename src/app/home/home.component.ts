@@ -51,22 +51,25 @@ export class HomeComponent implements OnInit {
   }
 
   showMSNews(): void {
-    this.service
-      .getMSNews()
+    this.service.getMSNews()
       .subscribe( response => {
-        this.homeMSNews = response.data;
+        this.homeMSNews = response;
         console.log(this.homeMSNews);
       })
   }
 
   showTop10() {
     this.service.getTop10()
-      .subscribe( response => {
-        for (let i = 0; i < 10; i++) {
-          this.animesInfo[i] = response.top[i];
-          console.log(this.animesInfo);
-        }
+      .subscribe(response => {
+        this.animesInfo = response;
+        console.log(this.animesInfo);
       })
+    //   .subscribe( response => {
+    //     for (let i = 0; i < 10; i++) {
+    //       this.animesInfo[i] = response.top[i];
+    //       console.log(this.animesInfo);
+    //     }
+    //   })
   }
 
 }
